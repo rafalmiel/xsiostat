@@ -101,6 +101,8 @@ void
 flts_free(xsis_flts_t *);
 
 // From tapdisk-metrics.h:
+#define BT3_LOW_MEMORY_MODE 0x0000000000000001
+
 struct tapdisk_stats {
     unsigned long long read_reqs_submitted;
     unsigned long long read_reqs_completed;
@@ -110,5 +112,7 @@ struct tapdisk_stats {
     unsigned long long write_reqs_completed;
     unsigned long long write_sectors;
     unsigned long long write_total_ticks;
+    uint64_t io_errors;
+    unsigned long long flags;
 };
 

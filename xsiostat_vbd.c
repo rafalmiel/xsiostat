@@ -174,9 +174,8 @@ vbd_update(xsis_vbd_t *vbd){
                         ((struct tapdisk_stats *)(vbd->shmmap))->read_reqs_completed;
     vbd->tdstat.infwr = ((struct tapdisk_stats *)(vbd->shmmap))->write_reqs_submitted -
                         ((struct tapdisk_stats *)(vbd->shmmap))->write_reqs_completed;
-
-    //Zero for now as we don't have this information in tapdisk stats file
-    vbd->tdstat.low_mem_mode = 0;
+    vbd->tdstat.low_mem_mode = ((struct tapdisk_stats *)(vbd->shmmap))->flags
+                               & BT3_LOW_MEMORY_MODE;
 
 out:
     // Return
